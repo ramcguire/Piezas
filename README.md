@@ -1,5 +1,9 @@
 # Piezas
 
+[![Build Status](https://travis-ci.org/ramcguire/Piezas.svg?branch=master)](https://travis-ci.org/ramcguire/Piezas)
+
+[![Coverage Status](https://coveralls.io/repos/github/ramcguire/Piezas/badge.svg?branch=master)](https://coveralls.io/github/ramcguire/Piezas?branch=master)
+
 ## Associated Enumerated Types
 `Piece` has four possible values: `X`,`O`,`Invalid`, and `Blank`
 
