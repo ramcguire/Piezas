@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+.vscode/
+gtest/
+
+# Testing
+*.gcno
+PiezasTest
