@@ -54,39 +54,63 @@ TEST(PiezasTest, empty_board_game_state) {
 TEST(PiezasTest, drop_piece_X) {
   Piezas game = Piezas();
   game.dropPiece(0);
-	ASSERT_EQ(game.pieceAt(0,0), X);
+  ASSERT_EQ(game.pieceAt(0, 0), X);
+}
+
+TEST(PiezasTest, drop_piece_full_column) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(0);
+  game.dropPiece(0);
+  ASSERT_EQ(game.dropPiece(0), Blank);
+}
+
+TEST(PiezasTest, drop_piece_out_of_range) {
+  Piezas game = Piezas();
+  ASSERT_EQ(game.dropPiece(-1), Invalid);
+}
+
+TEST(PiezasTest, drop_piece_out_of_range2) {
+  Piezas game = Piezas();
+  ASSERT_EQ(game.dropPiece(5), Invalid);
+}
+
+TEST(PiezasTest, drop_piece_out_of_range_toggles_turn) {
+  Piezas game = Piezas();
+  game.dropPiece(5);
+  ASSERT_EQ(game.dropPiece(1), O);
 }
 
 TEST(PiezasTest, drop_piece_O) {
   Piezas game = Piezas();
   game.dropPiece(0);
-	game.dropPiece(0);
-	ASSERT_EQ(game.pieceAt(1,0), O);
+  game.dropPiece(0);
+  ASSERT_EQ(game.pieceAt(1, 0), O);
 }
 
 TEST(PiezasTest, reset_clears_board) {
   Piezas game = Piezas();
   game.dropPiece(0);
-	game.reset();
-	ASSERT_EQ(game.pieceAt(0,0), Blank);
+  game.reset();
+  ASSERT_EQ(game.pieceAt(0, 0), Blank);
 }
 
 TEST(PiezasTest, drop_piece_result) {
   Piezas game = Piezas();
-	ASSERT_EQ(game.dropPiece(0), X);
+  ASSERT_EQ(game.dropPiece(0), X);
 }
 
 TEST(PiezasTest, turn_is_toggled) {
   Piezas game = Piezas();
   game.dropPiece(0);
-	ASSERT_EQ(game.dropPiece(0), O);
+  ASSERT_EQ(game.dropPiece(0), O);
 }
 
 TEST(PiezasTest, reset_turn) {
   Piezas game = Piezas();
   game.dropPiece(0);
-	game.reset();
-	ASSERT_EQ(game.dropPiece(0), X);
+  game.reset();
+  ASSERT_EQ(game.dropPiece(0), X);
 }
 
 TEST(PiezasTest, game_result_x_winner) {
