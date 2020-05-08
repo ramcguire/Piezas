@@ -202,3 +202,25 @@ TEST(PiezasTest, game_result_not_finished) {
 
   ASSERT_EQ(game.gameState(), Invalid);
 }
+
+TEST(PiezasTest, reset_clears_game_state) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(0);
+  game.dropPiece(2);
+
+  game.dropPiece(1);
+  game.dropPiece(3);
+  game.dropPiece(2);
+  game.dropPiece(0);
+
+  game.dropPiece(3);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(3);
+  
+  game.reset();
+
+  ASSERT_EQ(game.gameState(), Invalid);
+}
