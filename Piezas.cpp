@@ -109,16 +109,10 @@ Piece Piezas::gameState() {
       // if currentPiece does not match next spot
       // check if current score is higher, and store if it is
       if (currentPiece != board[i][j]) {
-        switch (currentPiece) {
-          case X:
-            if (currentScore > x_highest) x_highest = currentScore;
-            break;
-          case O:
-            if (currentScore > o_highest) o_highest = currentScore;
-            break;
-          default:
-            break;
-        }
+        if (currentPiece == X && currentScore > x_highest)
+          x_highest = currentScore;
+        if (currentPiece == O && currentScore > o_highest)
+          o_highest = currentScore;
         // reset current score for new piece
         currentScore = 0;
         currentPiece = board[i][j];
@@ -127,16 +121,8 @@ Piece Piezas::gameState() {
       currentScore++;
     }
   }
-  switch (currentPiece) {
-    case X:
-      if (currentScore > x_highest) x_highest = currentScore;
-      break;
-    case O:
-      if (currentScore > o_highest) o_highest = currentScore;
-      break;
-    default:
-      break;
-  }
+  if (currentPiece == X && currentScore > x_highest) x_highest = currentScore;
+  if (currentPiece == O && currentScore > o_highest) o_highest = currentScore;
   currentScore = 0;
   currentPiece = board[0][0];
 
@@ -144,16 +130,10 @@ Piece Piezas::gameState() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 4; j++) {
       if (currentPiece != board[j][i]) {
-        switch (currentPiece) {
-          case X:
-            if (currentScore > x_highest) x_highest = currentScore;
-            break;
-          case O:
-            if (currentScore > o_highest) o_highest = currentScore;
-            break;
-          default:
-            break;
-        }
+        if (currentPiece == X && currentScore > x_highest)
+          x_highest = currentScore;
+        if (currentPiece == O && currentScore > o_highest)
+          o_highest = currentScore;
         // reset current score for new piece
         currentScore = 0;
         currentPiece = board[j][i];
@@ -162,16 +142,8 @@ Piece Piezas::gameState() {
       currentScore++;
     }
   }
-  switch (currentPiece) {
-    case X:
-      if (currentScore > x_highest) x_highest = currentScore;
-      break;
-    case O:
-      if (currentScore > o_highest) o_highest = currentScore;
-      break;
-    default:
-      break;
-  }
+  if (currentPiece == X && currentScore > x_highest) x_highest = currentScore;
+  if (currentPiece == O && currentScore > o_highest) o_highest = currentScore;
 
   if (x_highest > o_highest) {
     return X;
