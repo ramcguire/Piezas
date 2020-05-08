@@ -190,7 +190,7 @@ TEST(PiezasTest, game_result_x_winner2) {
   game.dropPiece(2);
   game.dropPiece(3);
 
-  ASSERT_EQ(game.gameState(), O);
+  ASSERT_EQ(game.gameState(), X);
 }
 
 TEST(PiezasTest, game_result_not_finished) {
