@@ -95,9 +95,88 @@ Piece Piezas::gameState() {
       return Invalid;
     }
   }
-
   int x_highest = 0;
   int o_highest = 0;
+  int currentScore = 0;
 
+  Piece currentPiece = board[0][0];
+  if (currentPiece == X) x_highest = 1;
+  if (currentPiece == O) o_highest = 1;
+
+  // check all the columns
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 3; j++) {
+      // if currentPiece does not match next spot
+      // check if current score is higher, and store if it is
+      if (currentPiece != board[i][j]) {
+        switch (currentPiece) {
+          case X:
+            if (currentScore > x_highest) x_highest = currentScore;
+            break;
+          case O:
+            if (currentScore > o_highest) o_highest = currentScore;
+            break;
+          default:
+            break;
+        }
+        // reset current score for new piece
+        currentScore = 0;
+        currentPiece = board[i][j];
+      }
+      // increment current score
+      currentScore++;
+    }
+  }
+  switch (currentPiece) {
+    case X:
+      if (currentScore > x_highest) x_highest = currentScore;
+      break;
+    case O:
+      if (currentScore > o_highest) o_highest = currentScore;
+      break;
+    default:
+      break;
+  }
+  currentScore = 0;
+  currentPiece = board[0][0];
+
+  // check all the rows
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+      if (currentPiece != board[j][i]) {
+        switch (currentPiece) {
+          case X:
+            if (currentScore > x_highest) x_highest = currentScore;
+            break;
+          case O:
+            if (currentScore > o_highest) o_highest = currentScore;
+            break;
+          default:
+            break;
+        }
+        // reset current score for new piece
+        currentScore = 0;
+        currentPiece = board[j][i];
+      }
+      // increment current score
+      currentScore++;
+    }
+  }
+  switch (currentPiece) {
+    case X:
+      if (currentScore > x_highest) x_highest = currentScore;
+      break;
+    case O:
+      if (currentScore > o_highest) o_highest = currentScore;
+      break;
+    default:
+      break;
+  }
+
+  if (x_highest > o_highest) {
+    return X;
+  } else if (o_highest > x_highest) {
+    return O;
+  }
   return Blank;
 }

@@ -88,3 +88,73 @@ TEST(PiezasTest, reset_turn) {
 	game.reset();
 	ASSERT_EQ(game.dropPiece(0), X);
 }
+
+TEST(PiezasTest, game_result_x_winner) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(0);
+
+  game.dropPiece(2);
+  game.dropPiece(1);
+  game.dropPiece(3);
+  game.dropPiece(1);
+
+  game.dropPiece(2);
+  game.dropPiece(3);
+  game.dropPiece(2);
+  game.dropPiece(3);
+
+  ASSERT_EQ(game.gameState(), X);
+}
+
+TEST(PiezasTest, game_result_o_winner) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(0);
+  game.dropPiece(0);
+  game.dropPiece(1);
+
+  game.dropPiece(2);
+  game.dropPiece(1);
+  game.dropPiece(3);
+  game.dropPiece(2);
+
+  game.dropPiece(2);
+  game.dropPiece(3);
+  game.dropPiece(3);
+  game.dropPiece(1);
+
+  ASSERT_EQ(game.gameState(), O);
+}
+
+TEST(PiezasTest, game_result_tie) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(3);
+
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(3);
+
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(3);
+
+  ASSERT_EQ(game.gameState(), Blank);
+}
+
+TEST(PiezasTest, game_result_not_finished) {
+  Piezas game = Piezas();
+  game.dropPiece(0);
+  game.dropPiece(1);
+  game.dropPiece(2);
+  game.dropPiece(3);
+
+  ASSERT_EQ(game.gameState(), Invalid);
+}
